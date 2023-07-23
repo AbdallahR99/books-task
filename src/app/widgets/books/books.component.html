@@ -1,0 +1,61 @@
+<div class="mat-elevation-z7 d-flex flex-column overflow-auto" style="max-height: 79vh;">
+  <ng-container *ngIf="isEmpty(); else booksTemp">
+    <div class="d-flex flex-column justify-content-center align-items-center py-5">
+      <mat-icon class="text-black-50" fontIcon="book" [appSize]="50"></mat-icon>
+      <div class="py-2"></div>
+      <div class="h2 text-black-50" #titleHover="appHover" appHoverClass>
+        There are no books yet
+      </div>
+      <div class="py-2"></div>
+      <button (click)="addBook()" mat-raised-button color="primary">
+        <mat-icon fontIcon="add"></mat-icon>
+        <div class="px-2"></div>
+        Add Book
+      </button>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #booksTemp>
+  <mat-form-field class="sticky-top" appearance="fill">
+    <input matInput type="search" placeholder="Search" #searchInput (input)="search(searchInput?.value)">
+    <mat-icon matSuffix fontIcon="search"></mat-icon>
+  </mat-form-field>
+  <mat-chip-listbox appResponsive #collectionsResponsive="responsive" class="px-2">
+    <mat-chip-option color="accent"
+      *ngFor="let collection of collections() | slice:0:(getCurrentCollectionSize(collectionsResponsive))"
+      (click)="selectCollection(collection)" [matTooltip]="collection.length > 20 ? collection : ''"
+      [selected]="collection === selectedCollection()">
+      {{collection || 'All' | truncate:30}}
+    </mat-chip-option>
+    <mat-chip role="button" class="bg-secondary" *ngIf="collections().length > 15" (click)="selectFromCollections();">
+      <span class="d-flex text-white">
+        <mat-icon [inline]="true" fontIcon="bookmarks"></mat-icon>
+        <div class="px-1"></div>
+        <span>{{ 'Show All' }}</span>
+      </span>
+    </mat-chip>
+    <mat-chip role="button" class="bg-primary" (click)="addBook();">
+      <span class="d-flex text-white">
+        <mat-icon [inline]="true" fontIcon="add"></mat-icon>
+        <div class="px-1"></div>
+        <span>{{ 'Add Book' }}</span>
+      </span>
+    </mat-chip>
+  </mat-chip-listbox>
+
+  <app-books-table [books]="books()" (dropped)="drop($event)"></app-books-table>
+  <ng-container *ngIf="totalCount() === 0">
+    <div *ngIf="query().queryString" class="d-flex flex-column justify-content-center align-items-center py-5">
+      <mat-icon class="text-black-50" fontIcon="book" [appSize]="50"></mat-icon>
+      <div class="py-2"></div>
+      <div class="h2 text-black-50">No books found</div>
+    </div>
+  </ng-container>
+  <span>
+  </span>
+  <mat-paginator #bookPaginator *ngIf="totalCount() > 5" [length]="totalCount()" class="mb-2 sticky-bottom pb-1"
+    (page)="handlePageEvent($event)" [pageSize]="query().pageSize || totalCount()"
+    [pageSizeOptions]="pageSizeOptions()">
+  </mat-paginator>
+</ng-template>

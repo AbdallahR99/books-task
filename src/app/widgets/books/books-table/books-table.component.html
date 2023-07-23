@@ -1,0 +1,114 @@
+<table cdkDropList (cdkDropListDropped)="drop($event)" mat-table [dataSource]="books">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let i = index">
+      <div cdkDragHandle class="d-flex gap-1 draggable">
+        <mat-icon class="text-black-50 d-none d-md-table-cell" fontIcon="drag_indicator"></mat-icon> <span>{{i + 1}}</span>
+      </div>
+    </td>
+  </ng-container>
+
+  <!-- Book title Column -->
+  <ng-container matColumnDef="bookTitle">
+    <th mat-header-cell *matHeaderCellDef> Book title </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="d-flex flex-wrap gap-3 align-items-center">
+        <span [matTooltip]="element.title.length > 30 ? element.title : ''">
+          {{element.title | truncate:30}}
+        </span>
+        <span [matTooltip]="element.collection.length > 30 ? element.collection : ''" class="badge bg-secondary text-white d-none d-md-table-cell" *ngIf="element.collection">
+          {{element.collection | truncate:30 }}
+        </span>
+      </div>
+    </td>
+  </ng-container>
+
+  <!-- Year Column -->
+  <ng-container matColumnDef="year">
+    <th mat-header-cell *matHeaderCellDef> Year </th>
+    <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+  </ng-container>
+
+  <!-- Author name Column -->
+  <ng-container matColumnDef="authorName">
+    <th mat-header-cell *matHeaderCellDef> Author name </th>
+    <td mat-cell *matCellDef="let element"> <span [matTooltip]="element.author.length > 30 ? element.author : ''">{{element.author | truncate:30}}</span> </td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <th class="d-none d-md-table-cell" mat-header-cell *matHeaderCellDef> Actions </th>
+    <td class="d-none d-md-table-cell" mat-cell *matCellDef="let element">
+      <ng-container *ngTemplateOutlet="actionButton; context: { $implicit: element }"></ng-container>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr cdkDrag mat-row *matRowDef="let row; columns: displayedColumns;" mat-button (click)="openBottomSheet(row, bottomSheet)" appHoverClass="bg-light"></tr>
+</table>
+
+
+
+<ng-template #actionButton let-book>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+
+    <ng-container *ngTemplateOutlet="actionButtons; context: {$implicit: book}"></ng-container>
+
+  </mat-menu>
+</ng-template>
+
+<ng-template #bottomSheet let-book>
+  <h4 class="py-2 d-flex text-primary">
+    <mat-icon [inline]="true" color="primary" fontIcon="book"></mat-icon>
+    <div class="px-1"></div>
+    <span>{{book.title | truncate:50}}</span>
+  </h4>
+  <mat-divider></mat-divider>
+  <a role="presentation" class="text-decoration-none" (click)="closeBottomSheet()">
+    <ng-container *ngTemplateOutlet="actionButtons; context: {$implicit: book}"></ng-container>
+  </a>
+  <button (click)="closeBottomSheet()" mat-menu-item>
+    <mat-icon fontIcon="cancel"></mat-icon>
+    <span>Close</span>
+  </button>
+</ng-template>
+
+
+
+
+<ng-template #actionButtons let-book>
+
+  <button mat-menu-item (click)="view(book)">
+    <mat-icon fontIcon="visibility"></mat-icon>
+    <span>View</span>
+  </button>
+  <ng-container *ngIf="book?.collection;else notCollectivized">
+    <button mat-menu-item (click)="removeFromCollections(book)" class="text-black-50">
+      <mat-icon class="text-black-50" fontIcon="bookmarks"></mat-icon>
+      <span>Remove from collections</span>
+    </button>
+
+  </ng-container>
+  <ng-template #notCollectivized>
+    <button mat-menu-item (click)="addToCollections(book)" class="text-secondary">
+      <mat-icon class="text-secondary" fontIcon="bookmarks"></mat-icon>
+      <span>Add to collections</span>
+    </button>
+
+  </ng-template>
+
+  <button (click)="edit(book)" mat-menu-item class="text-warning">
+    <mat-icon class="text-warning"  fontIcon="edit"></mat-icon>
+    <span>Edit</span>
+  </button>
+
+  <button (click)="deleteBook(book)" mat-menu-item class="text-danger">
+    <mat-icon color="warn" fontIcon="delete"></mat-icon>
+    <span>Delete</span>
+  </button>
+</ng-template>

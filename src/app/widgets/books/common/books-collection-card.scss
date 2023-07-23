@@ -1,0 +1,14 @@
+.collection-card {
+  min-height: 6.7rem !important;
+  -webkit-transition: transform 300ms ease-out, box-shadow 300ms ease-out;
+  -moz-transition: transform 300ms ease-out, box-shadow 300ms ease-out;
+  -o-transition: transform 300ms ease-out, box-shadow 300ms ease-out;
+  transition: transform 300ms ease-out, box-shadow 300ms ease-out;
+}
+.collection-card:hover {
+  transform: translateY(-5px);
+  -webkit-transform: translateY(-5px);
+  -moz-transform: translateY(-5px);
+  -ms-transform: translateY(-5px);
+  -o-transform: translateY(-5px);
+}

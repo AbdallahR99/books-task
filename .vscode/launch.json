@@ -15,6 +15,40 @@
       "request": "launch",
       "preLaunchTask": "npm: test",
       "url": "http://localhost:9876/debug.html"
+    },
+
+    {
+      "name": "ng e2e",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
+      "args": ["${workspaceFolder}/e2e/protractor.conf.js"]
+    },
+
+
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}",
+
+    "sourceMaps": true,
+    "sourceMapPathOverrides": {
+      "webpack:/*": "${webRoot}/*",
+      "/./*": "${webRoot}/*",
+      "/src/*": "${webRoot}/*",
+      "/*": "*",
+      "/./~/*": "${webRoot}/node_modules/*"
     }
+
+  },
+  {
+      "type": "chrome",
+      "request": "attach",
+      "name": "Attach to Chrome",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}"
+  },
   ]
 }

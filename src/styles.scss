@@ -1,1 +1,17 @@
+@import "colors.scss";
+@import "bootstrap.scss";
+@import "animation.scss";
+@import "material.scss";
+@import "animation.scss";
+@import "snackbar.scss";
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+[role=button] {
+  .mdc-evolution-chip__action {
+    cursor: pointer;
+  }
+}

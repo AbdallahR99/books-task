@@ -1,0 +1,12 @@
+$primary: #0277BD;
+$secondary: #34495e;
+$success: #198754;
+$danger: #dc3545;
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+

@@ -1,0 +1,20 @@
+@import 'colors.scss';
+
+.mat-mdc-snack-bar-container {
+  &.snackbar-danger {
+    background-color: $danger;
+    --mdc-snackbar-container-color: $danger;
+  }
+
+
+  &.snackbar-success {
+    background-color: $success;
+    --mdc-snackbar-container-color: $success;
+  }
+
+  --mat-mdc-snack-bar-button-color: #e4e4e4;
+  --mdc-snackbar-supporting-text-color: #e4e4e4;
+  --mat-snack-bar-button-color: #e4e4e4;
+
+}
+
