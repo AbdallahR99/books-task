@@ -53,9 +53,9 @@ Then run `yarn install` to download the node packages
 
 You can review some of the other tasks that I have done recently.
 
-CovidTracker: [https://github.com/AbdallahR99/covidtracker](https://github.com/AbdallahR99/covidtracker)
+- CovidTracker: [https://github.com/AbdallahR99/covidtracker](https://github.com/AbdallahR99/covidtracker)
 [Live Demo](https://abdallahr99.github.io/covidtracker/)
 
-A simple UI task (check the code): [https://github.com/AbdallahR99/ng_task](https://github.com/AbdallahR99/ng_task) [Live Demo](https://abdallahr99.github.io/ng_task/)
+- A simple UI task (check the code): [https://github.com/AbdallahR99/ng_task](https://github.com/AbdallahR99/ng_task) [Live Demo](https://abdallahr99.github.io/ng_task/)
 
 !["Home"](docs/covidtracker.png)
