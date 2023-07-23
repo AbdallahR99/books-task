@@ -1,0 +1,24 @@
+
+// remove the comments for more customization
+
+// @import "bootstrap/scss/functions";
+// @import "bootstrap/scss/variables";
+// @import "bootstrap/scss/variables-dark";
+// @import "bootstrap/scss/maps";
+// @import "bootstrap/scss/mixins";
+// @import "bootstrap/scss/utilities";
+// @import "bootstrap/scss/helpers";
+// @import "bootstrap/scss/utilities/api";
+
+// make sure the variables names are the same as in the bootstrap source files
+// or remove the comments to customize the variables
+@import "colors.scss";
+
+// $custom-colors: (
+//   "primary": $primary,
+//   "secondary": $secondary,
+// );
+
+// $theme-colors: map-merge($theme-colors, $custom-colors);
+
+@import "bootstrap/scss/bootstrap";

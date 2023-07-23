@@ -1,0 +1,90 @@
+@use '@angular/material' as mat;
+
+@import "colors.scss";
+$primary-palette: (
+  50: tint($primary, 90%),
+  100: tint($primary, 80%),
+  200: tint($primary, 70%),
+  300: tint($primary, 60%),
+  400: tint($primary, 50%),
+  500: $primary,
+  600: shade($primary, 10%),
+  700: shade($primary, 20%),
+  800: shade($primary, 30%),
+  900: shade($primary, 40%),
+
+ contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+ )
+);
+$accent-palette: (
+  50: tint($secondary, 90%),
+  100: tint($secondary, 80%),
+  200: tint($secondary, 70%),
+  300: tint($secondary, 60%),
+  400: tint($secondary, 50%),
+  500: $secondary,
+  600: shade($secondary, 10%),
+  700: shade($secondary, 20%),
+  800: shade($secondary, 30%),
+  900: shade($secondary, 40%),
+
+ contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+ )
+);
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$books-task-primary: mat.define-palette($primary-palette);
+$books-task-accent: mat.define-palette($accent-palette);
+
+// The warn palette is optional (defaults to red).
+$books-task-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$books-task-theme: mat.define-light-theme((
+  color: (
+    primary: $books-task-primary,
+    accent: $books-task-accent,
+    warn: $books-task-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($books-task-theme);
+
+
+.cdk-overlay-container {
+  z-index: 1200;
+}
