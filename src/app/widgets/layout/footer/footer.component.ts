@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           <div class="col-md-12">
             <div class="footer p-3 mt-4 text-center">
             <a class="text-black-50 text-decoration-none"
-            href="https://github.com/AbdallahR99/covidtracker" target="_blank">
+            href="https://github.com/AbdallahR99/books-task" target="_blank">
               <span>Source Code - Github</span>
 
             </a>
