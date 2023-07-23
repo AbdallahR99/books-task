@@ -15,7 +15,7 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon(
       'logo',
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        '../assets/icons/logo.svg'
+        'assets/icons/logo.svg'
       )
     );
   }
