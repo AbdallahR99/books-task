@@ -11,7 +11,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 </p>
 <!--!["Home"](docs/bookstask1.png)-->
 <!--!["Home Responsive"](docs/bookstask2.png)-->
-
+<p align="center"> 
+<video width="640" height="360" controls>
+  <source src="docs/bookstaskscreenrecord.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</p>
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
