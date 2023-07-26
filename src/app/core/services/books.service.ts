@@ -93,7 +93,7 @@ export class BooksService {
     );
   }
 
-  dummyData(): void {
+  dummyData(count = 100): void {
     const collections: string[] = [
       'Fiction',
       'Non-Fiction',
@@ -117,7 +117,7 @@ export class BooksService {
       'Comics',
     ];
     const books: Book[] = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < count; i++) {
       const randomCollection = collections[Math.floor(Math.random() * collections.length)];
       const n = (i + 1) + this.totalCount();
       const book: Book = {

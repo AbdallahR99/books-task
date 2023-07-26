@@ -1,14 +1,30 @@
 import { Component, HostBinding, inject } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import { LayoutModule } from '@widgets/layout/layout.module';
+import { SharedModule } from '@core/shared/shared.module';
+import { RouterModule } from '@angular/router';
 @Component({
+  imports: [
+    RouterModule,
+    LayoutModule,
+    SharedModule,
+  ],
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styles: [
+    `
+      :host {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: center;
+      }
+    `
+  ],
+  standalone: true,
 })
 export class AppComponent {
-  @HostBinding('class') class = 'd-flex flex-column h-100';
   matIconRegistry = inject(MatIconRegistry)
   domSanitizer = inject(DomSanitizer)
   constructor() {

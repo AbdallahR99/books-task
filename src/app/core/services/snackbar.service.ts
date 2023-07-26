@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -7,25 +7,27 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class SnackbarService {
   private snackbar = inject(MatSnackBar);
 
-  success(message: string, duration = 5000): void {
+  success(message: string, duration = 5000, config?: MatSnackBarConfig): void {
     this.snackbar.open(message, 'Close', {
       duration,
-      panelClass: ['snackbar-success'],
+      ...config,
+      panelClass: ['snackbar-success', ...(config?.panelClass ?? [])],
     });
   }
 
-  default(message: string, duration = 5000): void {
+  default(message: string, duration = 5000, config?: MatSnackBarConfig): void {
     this.snackbar.open(message, 'Close', {
       duration,
-      panelClass: ['snackbar-default'],
+      ...config,
+      panelClass: ['snackbar-default', ...(config?.panelClass ?? [])],
     });
   }
 
-  error(message: string,  duration = 5000): void {
+  error(message: string,  duration = 5000, config?: MatSnackBarConfig): void {
     this.snackbar.open(message, 'Close', {
       duration,
-      panelClass: ['snackbar-danger'],
-
+      ...config,
+      panelClass: ['snackbar-danger', ...(config?.panelClass ?? [])],
     });
   }
 
